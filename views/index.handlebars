@@ -4,16 +4,16 @@
 			{{!-- Jumobtron --}}
 			<div class="jumbotron text-center">
 			  <h1 class="display-3">Read Some Tech News!</h1>
-			  <h2 class="lead">Click the Scrape Button to Get the Latest Tech Articles on Reddit</h2>
+			  <h2 class="lead">Click the Scrape Button to Get the Latest Tech Articles on Recode.Net</h2>
 			  <hr class="my-4">
 			  <p class="lead">
 
 			    <a href="/scrape">
-			    	<button class="btn btn-primary btn-lg">Scrape!</button>
-			    </a>
+			    	<button id="scrapeArticles" type="button" class="btn btn-primary btn-lg">Scrape!</button>
+					</a>
 
-			    <a href="/view-scrapes">
-			    	<button class="btn btn-primary btn-lg">View Existing Scrapes</button>
+			    <a href="/saved">
+			    	<button class="btn btn-primary btn-lg">View Saved Articles</button>
 			    </a>
 
 			  </p>
@@ -21,15 +21,51 @@
 		</div>
 	</div>
 
-	<div class = "row">
-		<div class = "col-xs-8">
-			{{!-- articles --}}
-		</div>
 
-		<div class = "col-xs-4">
-			{{!-- comments --}}
-		</div>
+{{!-- <div class="container">
+	<div class="jumbotron">
+  	<h1>Mongo Scraper</h1>
+  	<img src="/assets/img/logo.svg" class="img-responsive .center-block" alt="Smashing Magazine" />
+	</div> --}}
 
+	<!-- Article Listings -->
+	{{#each articleList}}
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <a href="{{this.link}}" target="_blank"><h3 class="panel-title">{{this.title}}</h3></a>
+
+	    	{{#if this.saved}}
+	    		<button data-id={{this.id}} class="btn btn-primary seeNotes" type="submit">Notes</button>
+	    		<button data-id={{this.id}} class="btn btn-primary deleteArticle" type="submit">Delete Article</button>
+	    	{{else}}
+	    		<button class="btn btn-primary saveArticle" type="submit">Save Article</button>
+	    	{{/if}}
+
+	  </div>
+	  <div class="panel-body">
+	    {{this.description}}
+	  </div>
 	</div>
-	
+	{{/each}}
+
 </div>
+
+{{!-- <!-- Modal -->
+	<div id="resultsModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	      <div class="modal-body">
+	        <h2 id="scrapeSucess"></h2>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div> --}}
