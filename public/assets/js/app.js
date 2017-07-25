@@ -2,13 +2,6 @@
 $("#scrapeArticles").on("click", function(event) {
 	window.location = "/scrape";
 });
-// 	var currentURL = window.location.origin;
-// // Show Modal with number of posts
-// 	$.get(currentURL + "/scrape", function(results){
-// 		$("#scrapeSucess").text(results.length + " posts scraped.");
-// 		$("#resultsModal").modal('toggle');
-// 	});
-// });
 
 // Click on save article button
 $(document).on("click", ".saveArticle", function() {

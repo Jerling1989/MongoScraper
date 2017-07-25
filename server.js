@@ -97,17 +97,6 @@ app.get("/scrape", function(req, res) {
 }); // End of route
 
 
-
-// A POST route to save article to database
-
-// A GET request to populate the page with articles that have been saved
-
-// A POST to remove a saved article from the database
-
-// A POST to create or update a note
-
-// A POST to delete a note
-
 // Listen on port 3000
 app.listen(3000, function() {
   console.log("Listening on port: 3000");
