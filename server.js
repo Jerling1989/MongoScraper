@@ -27,6 +27,9 @@ app.use(bodyParser.urlencoded({
 // Serve static content for the app from the "public" directory
 app.use(express.static('public'));
 
+// Set up Dynamic Port
+var PORT = process.env.PORT || 3000;
+
 // Database configuration with mongoose
 var databaseUri = 'mongodb://localhost/mongo-scraper';
 
@@ -107,6 +110,6 @@ app.get('/scrape', function(req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log('Listening on port: 3000');
+app.listen(PORT, function() {
+  console.log('Listening on port: ' + PORT);
 });
