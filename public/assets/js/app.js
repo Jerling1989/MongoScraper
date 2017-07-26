@@ -1,17 +1,17 @@
 // Scrape articles
-$("#scrapeArticles").on("click", function(event) {
-	window.location = "/scrape";
+$('#scrapeArticles').on('click', function(event) {
+	window.location = '/scrape';
 });
 
 // Click on save article button
-$(document).on("click", ".saveArticle", function() {
+$(document).on('click', '.saveArticle', function() {
   // Save the id from the article
-  var thisId = $(this).attr("data-id");
+  var thisId = $(this).attr('data-id');
 
 // Run a POST to save the article
   $.ajax({
-    method: "POST",
-    url: "/save",
+    method: 'POST',
+    url: '/save',
     data: {
       id:  thisId
     }
