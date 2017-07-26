@@ -11,7 +11,7 @@ $(document).on('click', '.saveArticle', function() {
 // Run a POST to save the article
   $.ajax({
     method: 'POST',
-    url: '/save',
+    url: '/saveArticle',
     data: {
       id:  thisId
     }

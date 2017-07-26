@@ -86,7 +86,7 @@ app.get('/scrape', function(req, res) {
 
 	    var title = $(this).children('h2').text();
 	    var description = $(this).children('p').first().text();
-	    var link = $(this).children('a').attr('href');
+	    var link = $('h2').children('a').attr('href');
 
 	    // Save these results in an object for initial page listing
 	    results.push({
@@ -107,6 +107,59 @@ app.get('/scrape', function(req, res) {
 	});
 
 }); // End of route
+
+
+
+
+// When user clicks on save article, this changes the saved state to true, which with a handlebars #if helper will display on the saved page
+app.post("/saveArticle/:id", function(req, res){
+  Article.findOneAndUpdate({"_id": req.params.id}, {"saved": true})
+  .exec(function(err, doc){
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log(doc);
+  }
+  });
+});
+
+// When user clicks on delete article, this changes the saved state to false, which with a handlebars #if helper will no longer display on the saved page
+app.post("/deleteArticle/:id", function(req, res){
+  Article.findOneAndUpdate({"_id": req.params.id}, {"saved": false})
+  .exec(function(err, doc) {
+  // Log any errors
+  if (err) {
+    console.log(err);
+  }
+  else {
+    // Or send the document to the browser
+    res.redirect("/saved");
+  }
+  });
+});
+
+// The saved handlebars page which will display articles depending on the state of the saved key
+app.get("/saved", function(req, res) {
+  // Grab every doc in the Articles array
+  Article.find({}, function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Or send the doc to the browser as a json object
+    else {
+      console.log("In app.get saved");
+      var hbsObject ={
+        entry: doc
+      };
+      res.render("saved", hbsObject);
+    }
+  });
+});
+
+
+
 
 
 // Listen on port 3000
